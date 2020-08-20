@@ -1,0 +1,22 @@
+Oracle 문자열
+
+문자열 데이터 유형varchar2•nvarchar2•char•nchar
+
+varchar2
+varchar2는 가변길이의 문자열
+varchar2(10)에 2바이트를 포함하면 10바이트가 아닌 2바이트가 사용된다
+최대4000바이트
+문자 데이터 형식으로 가장 많이 사용되는 데이터 형식
+
+nvarchar2
+Unicode 문자 데이터에 대응한 varchar2
+최대4000바이트
+
+char
+char는 고정길이 문자열
+char(10)에 2바이트를 포함하면 나머지 8바이트 공백을 더해서 10바이트 사용
+최대2000바이트
+
+nchar
+Unicode 문자 데이터에 대응한 char
+최대 2000바이트
