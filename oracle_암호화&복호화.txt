@@ -1,0 +1,15 @@
+암호(Cryptography) : 평문을 암호문으로 변환 하거나 암호문을 평문으로 변환하는 기술
+
+평문(Plaintext) : 해독 가능한 형태의 텍스트
+Ex) ("123456")
+
+암호문(Ciphertext) : 해독 불가능한 형태의 텍스트
+Ex) ("aBD#fefa$fae!") 
+
+암호화(Encryption)&복호화(Decryption)
+암호화(Encryption) : 평문을 암호문으로 변환하는 과정
+Ex) 평문("123456") → 암호화 → 암호문("aBD#fefa$fae!")
+
+복호화(Decryption) : 암호문을 평문으로 변환하는 과정 
+Ex) 암호문("aBD#fefa$fae!!") → 복호화 → 평문("123456")
+
