@@ -1,0 +1,13 @@
+oracle  10,16진수(Decimal, Hex) 변환
+Hex to Decimal
+  SELECT TO_NUMBER('FF','XX') FROM DUAL;
+
+  Result -> 255
+
+Decimal to Hex
+  SELECT TO_CHAR(255,'XXXX') FROM DUAL;
+
+  Result -> FF
+
+*HEXTORAW
+*RAWTOHEX
