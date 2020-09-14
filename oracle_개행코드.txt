@@ -1,0 +1,12 @@
+oracle 줄바꿈
+
+CHR(10) : line feed(new line) 커서가 위치한 줄의 아래로 이동
+CHR(13) : carriage return 현재 커서가 위치한 줄의 맨 앞으로 커서이동
+
+유닉스/리눅스 환경에서는 라인피드(LF) 만으로 줄바꿈이 되고 (\n)
+윈도우/DOS 환경에서는 캐러지리턴(CR),라인피드(LF) 조합으로 줄바꿈이 된다고 한다. (\r\n)
+
+ex)SELECT 'A'||CHR(10)||CHR(13)||'B' FROM DUAL
+
+개행 제거
+replace (컬럼명, CHR(13) || CHR(10),'')
