@@ -1,0 +1,17 @@
+oracle update
+
+--UPDATE문
+UPDATE 테이블명
+SET 
+컬럼1 = 변경할 값,
+컬럼2 = 변경할 값
+.....
+WHERE
+조건;
+
+
+UPDATE COMPANY_TABLE
+SET
+COMPANY_NAME = 'oracle'
+WHERE
+COMPANY_CODE = 1
