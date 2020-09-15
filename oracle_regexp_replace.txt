@@ -1,0 +1,58 @@
+oracle regexp_replace
+
+ replace 함수를 확장한 개념으로 주어진 문자역에서 특정 패턴을 찾아서 주어진 다른 모양으로 치환하는 함수이다.
+
+문법
+
+REGEXP_REPLACE (source_char, pattern
+                         [, replace_string
+                         [, position
+                         [, occurrence
+                         [, match_param[[[
+)
+
+첫번째 인수 Source_char 
+ : 원본데이터, 컬럼명이나, 문자열이 올수 있다.
+
+두번쨰 인수 pattern
+ : 찾고자 하는 패턴을 의미
+
+세번째 인수 replace_string
+ : 변환하고자 하는 형태
+
+네번째 인수 position 
+ : 검색 시작 위치를 지정, 아무런 값도 주지 않을 경우 기본값 : 1
+
+다섯 번째 인수 occurrence
+ : 패턴과 일치가 발생하는 횟수를 의미, 0은 모든 값을 대채, 다른 n이란 숫자를 주면 n번째 발생하는 문자열을 대입
+
+여섯 번째 인수 match_parameter
+ : 기본값으로 검색되는 옵션을 바꿀수 있다.
+   - c : 대소문자를 구분해서 검색
+   -  i : 대소푼자를 구분하지 않고 검색
+   - m : 검색 조건을 여러 줄로 줄 수 있음
+   - c와 i가 중복으로 설정되면 마지막에 설정된 값을 사용 ex) ic가 중복으로 절정되면  c 옵션 적용
+
+
+REGEXP_REPLACE 함수 실습
+
+모든 숫자를 특수 기호로 변경하기
+SELECT text, regexp_replace(text, '[[:digit:]]', '+') "숫자->기호" FROM TEST
+
+특정 패턴을 찾아서 패턴을 추가하기
+SELECT text, regexp_replace(text, '([0-9])', '\1*') "숫자->패턴" FROM TEST
+
+지역번호가 2자리이고 전화국번이 4자리인 전화번호인 학생 찾기
+SELECT NAME, tel FROM student 
+WHERE regexp_replace(tel, '(\d{2})\)(\d{4})\-(\d{4})','\2') > '5000'
+
+전공이 101번인 학생의 이름 변경하기 (홍-길-동)
+SELECT name, RTRIM(regexp_replace(name, '(.)', '\1-'), '-') "변경후" FROM student
+WHERE deptno1=101
+
+
+특정 문자열을 다른 형태로 바꿀때
+SELECT REGEXP_REPLACE('20120324', 
+'([[:digit:]]{4})([[:digit:]]{2})([[:digit:]]{2})',
+'\1 : \2 : \3') FROM dual
+

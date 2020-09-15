@@ -1,0 +1,7 @@
+oracle replace
+여러컬럼 한번에 치환
+
+select replace(regexp_replace(str, 'chr(13)', ''), 'chr(10)', ' ')  
+from test_table 
+
+
