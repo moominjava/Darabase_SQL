@@ -1,0 +1,29 @@
+sql case when
+
+CASE 컬럼  
+	WHEN 조건1 THEN 값1 
+	WHEN 조건2 THEN 값2 
+	ELSE 값3 
+	END 
+
+CASE gender
+    WHEN '男' THEN 1
+    WHEN '女' THEN 2
+    ELSE 99
+END
+
+여러조건의경우:
+SELECT ename
+     , deptno
+     , CASE WHEN deptno = '10' THEN 'New York'
+            WHEN deptno = '20' THEN 'Dallas'
+            ELSE 'Unknown'
+       END AS loc_name
+  FROM emp
+ WHERE job = 'MANAGER'
+
+
+
+중첩도 가능
+
+
