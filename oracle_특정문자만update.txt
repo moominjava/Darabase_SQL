@@ -1,0 +1,27 @@
+sql update
+
+Table에서 특정 문자만을 UPDATE
+UPDATE 테이블명
+SET 컬럼명 = REPLACE(컬럼명 ,'변경전 문자','변경후 문자') 
+
+ex1)
+AAA테이블에서
+MN_ID에 M00이 포함된 내용을 찾아
+MOO을 M11로 UPDATE
+ 
+UPDATE AAA
+SET MN_ID = REPLACE(MN_ID,'M00','M11')
+WHERE MN_ID LIKE '%M00%' 
+
+ex2)
+AAA테이블에서
+MN_ID에 M00과
+MN_NAME에 사용자라는 문자가 포함된 내용을 찾아
+MOO을 M11로
+​MN_NAME의 앞에서 부터 3번째까지를 사용자로 UPDATE
+
+UPDATE AAA
+SET MN_ID= REPLACE(MN_ID,'M00','M11')
+, MN_NAME = REPLACE(MN_NAME,SUBSTR(MN_NAME,0,3),'사용자')
+WHERE MN_ID LIKE '%M00%'
+AND MN_NAME LIKE '%이용자%'
