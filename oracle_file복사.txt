@@ -1,0 +1,28 @@
+oracle file 복사
+
+1  shutdown
+SQL> shutdown immediate
+
+
+2. 데이터파일을 이동할 위치에 복사
+$ cp /원본경로/test01.dbf’ /이동할경로/test01.dbf’
+
+ 
+3. mount
+ $ sqlplus /as sysdba
+ SQL> startup mount
+ 
+
+4. alter database rename
+SQL> alter tablespace test rename
+       file ‘/원본경로/test01.dbf’ to ‘/이동할경로/test01.dbf’
+
+
+5. open
+SQL> alter database open;
+ 
+
+6. 필요 없어진 파일 삭제.
+$ rm –rf /원본경로/test01.dbf’
+
+ 
