@@ -1,0 +1,55 @@
+oracle 유용한 sql
+
+1. Oracle
+(1) 문자열
+
+
+-- 소문자 -> 대문자변환
+-- UPPER(column|expression)
+SELECT UPPER('string') FROM DUAL;
+
+
+-- 대문자 -> 소문자변환
+-- LOWER(column|expression)
+SELECT LOWER('STRING') FROM DUAL;
+
+
+-- 첫글자 대문자 나머지소문자
+-- INITCAP(column|expression)
+SELECT INITCAP('string') FROM DUAL;
+
+
+-- 두문자를 이어준다.
+-- CONCAT(column|expression1, column|expression2)
+SELECT CONCAT('사과', '맛있다.') FROM DUAL;
+SELECT '사과' || '맛있다.' FROM DUAL; -- 같은동작
+
+
+-- 정해진문자열을 리턴
+-- SUBSTR(column|expression, m [n])
+SELECT SUBSTR('사과입니다.', 1, 2) FROM DUAL; -- 사과
+SELECT SUBSTR('사과입니다.', -3, 2) FROM DUAL; -- 니다
+
+
+-- 문자열 길이리턴
+-- LENGTH(column|expression)
+SELECT LENGTH('sTRING') FROM DUAL;
+
+
+-- 해당문자가 몇번째에 위치하는지 리턴
+-- INSTR(column|expression1, column|expression2)
+SELECT INSTR('string', 'n') FROM DUAL;
+
+
+-- 전체 자리수중 모자른만큼 해당문자로 채운다 (왼쪽,오른쪽)
+-- LPAD(column|expression, n, 'string'), RPAD(column|expression, n, 'string')
+SELECT LPAD('NUMBER', 20 , 'A') FROM DUAL;
+SELECT RPAD('NUMBER', 20 , 'A') FROM DUAL;
+
+
+-- 공백제거 (왼쪽,오른쪽)
+-- LTRIM(column|expression) , LTRIM(column|expression)
+SELECT LTRIM('   왼쪽공백') FROM DUAL;
+SELECT LTRIM('오른쪽공백  ') FROM DUAL;
+
+
