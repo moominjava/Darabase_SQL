@@ -1,0 +1,17 @@
+oracle sql delete
+
+--DELETE문
+DELETE FROM 테이블명
+WHERE
+조건;
+
+회사테이블 (COMPANY_TABLE)에 회사코드(COMPANY_CODE)가 1인 데이터삭제
+DELETE FROM COMPANY_TABLE
+WHERE
+COMPANY_CODE = 1
+
+COMMIT / ROLLBACK
+COMMIT --반영
+ROLLBACK --취소
+
+이미 COMMIT된 데이터는 ROLLBACK을 해도 데이터가 복구되지 않으니 주의
