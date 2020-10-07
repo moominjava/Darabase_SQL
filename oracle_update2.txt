@@ -1,0 +1,20 @@
+oracle sql update
+
+-- 사원번호가 7902번인 사원의 부서 번호를 30으로 수정
+SQL> UPDATE emp
+     SET deptno = 30
+     WHERE empno = 7902;
+
+-- 부서번호 20의 사원들 급여가 10% 인상됨
+SQL> UPDATE emp
+     SET sal = sal * 1.1
+     WHERE deptno = 20;
+
+-- 모든 사원의 입사일을 오늘로 수정
+SQL> UPDATE emp
+     SET hiredate = SYSDATE
+
+select를 이용한 수정
+UPDATE TEST_TABLE_ONE A SET AMT=
+          (SELECT AMT FROM  TEST_TABLE_TWO B WHERE A.ID=B.ID)
+      WHERE ID='test3'
