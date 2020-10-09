@@ -1,0 +1,112 @@
+oracle view
+
+View란 무엇일까?
+
+ - 가상의 테이블을 의미
+ - 데이터가 없고 SQL만 저장되어 있으며, 사용자가 접근 시 View에 들어 있던 SQL이 수행되어 결과 도출
+
+다른 책이나 정보를 보면 메뉴판의 개념을 생각하라고 합니다.
+사용자가 메뉴판을 보고 주문 시 
+그때 주방에서 음식을 만들어 제공한다는 개념과 같다는 말입니다.
+
+View의 장점은 무엇이 있을까?
+ - View를 사용하면 사용자가 View에 접근 하는 순간 원본 테이블의 데이터를 가져오기때문에 데이터가 정확함
+    → 접근하는 순간 데이터를 가져오기때문에 제약조건이나 인덱스등을 생성할 수 없음
+ - 어떤 결과를 조회하기위해 6개의 테이블을 Join 해야할 경우 View를 생성하여 간단히 조회 가
+
+
+이것이 전체적은 View의 개념과 장점입니다.
+View에도 종류가 몇가지 있습니다
+
+1. 단순 View
+☞ 1개의 테이블로 만들어지는 View를 의미
+생성 문법
+create [or replace] [force | noforce] View view이름
+as
+[with check option [constraint 제약조건]  ]
+[with read only]
+
+ex)
+create or replace view v_dep
+as
+select deptno, d_name, addr from dep;
+
+대괄호('[]')로 묶은 부분은 옵션 입니다.
+아래는 옵션 설명입니다.
+
+or replace : 같은 이름의 View가 있을 경우 삭제후 다시 생성
+force : 기본 테이블의 존재 여부 상관없이 View생성
+noforce : 기본 테이블이 존재할 경우에만 VIew 생성(기본값)
+with check option : 주어진 제약조건에 맞는 데이터만 입력 및 수정 가능
+with read only : select만 가능
+
+
+2. 복합 View
+☞ 여러개의 테이블이 Join 되어 생성되는 것
+일반 View와 복합 View는 테이블의 Join만 다를뿐 생성하는 원리와 작동방식은 똑같습니다.
+
+생성 문법
+create or replace View v_dept_user
+as
+select d.deptno, u.user_name
+from dept d, user u
+where d.deptno = u.deptno;
+
+
+3. INLINE View(인라인 뷰)
+☞ 1회만 필요한 View일 경우를 말함
+
+일반적으로 우리가 테이블 안에 서브쿼리를 사용하는 형태를 말합니다.
+이런개념도 오늘에서야 알게 되었네요.
+
+사용 예시
+select
+d_name, user_name
+from (select deptno, user_name from user) u, dept d
+where
+u.deptno = d.deptno;
+
+
+
+4. MVIEW (Materialized View)
+☞ 1회만 필요한 View일 경우를 말함
+View는 데이터를 가지고 있지 않다 하였습니다.
+하지만 데이터가 5억씩 존재한다면 어떨까요?
+부하도 많이 걸리뿐더러 속도가 당연히 느리겠죠?
+이러하여 등장한 것이 MVIEW 입니다. 그리고 데이터를 가지고 있습니다.
+
+데이터가 많으면 많을 수록 MVIEW가 활용도 면에서 좋습니다.
+그러나 데이터 동기화에 대한 문제가 존재합니다.
+
+일단 MVIEW를 생성하기 위해서는
+query rewrite권한과 create materalized view 권한이 있어야 합니다.
+
+생성 문법
+create materialized view v_mview
+build immediate
+refresh
+on demand
+complete
+enable query rewrite
+as
+select deptno, dept_name
+from dept
+where deptno in (10, 20, 30)
+
+
+생성 문법은 비교적 간단합니다.
+ 사용 의미
+build immediate : 서브쿼리 부분을 수행하면서 데이터를 가져옴
+refresh, on demand : MVIEW와 어떻게 동기화 할건지에 대한 옵션
+                                  on demand : 수동 동기화
+                                  on commit : 자동 동기화(데이터 양이 많기에 쓰지 않는것이 좋음)
+complete : MVIEW 내의 데이터 전체가 원본 테이블과 동기화(atomic_refresh=true, complete로 설정되있어야함)
+complete 이외의 옵션을 살펴보겠습니다.
+fast : 원본 테이블에 새로운 데이터가 들어올경우 동기화
+force : fast방식이 가능한지 시도한우 안되면 complete방식 시도
+never : 동기화 하지 않음
+
+MVIEW는 데이터가 존재하기 때문에 index를 생성할 수 있습니다.
+생성 문법
+create index idx_m_mview on v_mview(deptno)
+
