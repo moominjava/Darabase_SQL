@@ -1,0 +1,21 @@
+oracle plsql
+
+기본 특징
+- 블록 단위의 실행을 제공한다. 이를 위해 BEGIN과 END;를 사용한다. 그리고 마지막 라인에 /를 입력하면 해당 블록이 실행된다.
+ - 변수, 상수 등을 선언하여 SQL과 절차형 언어에서 사용
+ - 변수의 선언은 DECLARE절에서만 가능하다. 그리고 BEGIN 섹션에서 새 값이 할당될 수 있다.
+ - IF문을 사용하여 조건에 따라 문장들을 분기 가능
+ - LOOP문을 사용하여 일련의 문장을 반복 가능
+ - 커서를 사용하여 여러 행을 검색 및 처리
+ - [ PL/SQL에서 사용 가능한 SQL은 Query, DML, TCL이다. ]
+   DDL (CREATE, DROP, ALTER, TRUNCATE …), DCL (GRANT, REVOKE) 명령어는 동적 SQL을 이용할 때만 사용 가능하다.
+- 블록 단위의 실행을 제공한다. 이를 위해 BEGIN과 END;를 사용한다. 그리고 마지막 라인에 /를 입력하면 해당 블록이 실행된다.
+
+기본 plsql block 구조
+ - 변수, 상수 등을 선언하여 SQL과 절차형 언어에서 사용
+ - 변수의 선언은 DECLARE절에서만 가능하다. 그리고 BEGIN 섹션에서 새 값이 할당될 수 있다.
+ - IF문을 사용하여 조건에 따라 문장들을 분기 가능
+ - LOOP문을 사용하여 일련의 문장을 반복 가능
+ - 커서를 사용하여 여러 행을 검색 및 처리
+ - [ PL/SQL에서 사용 가능한 SQL은 Query, DML, TCL이다. ]
+   DDL (CREATE, DROP, ALTER, TRUNCATE …), DCL (GRANT, REVOKE) 명령어는 동적 SQL을 이용할 때만 사용 가능하다.
