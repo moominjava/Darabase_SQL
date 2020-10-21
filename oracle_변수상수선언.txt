@@ -1,0 +1,44 @@
+oracle 변수 , 상수 선언
+
+PL / SQL이란?
+PL/SQL은 상용 관계형 데이터베이스 시스템인 오라클 DBMS에서 SQL 언어를 확장하기 위해 사용하는 컴퓨터 프로그래밍 언어
+
+변수 및 상수 선언
+--변수 선언
+변수명 데이터타입 : = 초기값;
+EX_NUM NUMBER  := 1;
+EX_STR VARCHAR2(10) := 'STR1';
+
+--상수 선언
+상수명 CONSTRANT 데이터타입 : = 상수값;
+EX_NUM CONSTANT NUMBER  := 1;
+
+
+PL/SQL에서는 :=입니다. 
+특정 변수에 :=을 기준으로 오른쪽 값을 왼쪽에 할당한다는 뜻
+변수, 상수를 선언은 선언부(DECLARE) 블록내에서만 가능
+상수 선언시에는 CONSTANT라는 키워드를 상수명 뒤에 붙여주면 됩니다. 
+상수 선언시에는 초기값을 무조건 할당하여야 하고 
+변수는 선언과 동시에 초기값을 할당하지 않는다면 데이터 타입에 상관없이 초기값이 NULL로 지정됩니다.
+
+
+변수 및 상수의 출력문
+DECLARE
+EX_NUM CONSTANT NUMBER := 10; --상수 선언
+EX_STR VARCHAR2(10); --변수 선언
+
+BEGIN
+EX_STR := 'EXAMPLE'; --변수 초기값 설정
+DBMS_OUTPUT.PUT_LINE(EX_NUM); --상수 출력
+DBMS_OUTPUT.PUT_LINE(EX_STR); --변수 출력
+END;
+
+변수 및 상수의 연산
+DECLARE
+VN_NUM NUMBER :=1;
+VN_NUM2 NUMBER :=2;
+
+BEGIN
+
+DBMS_OUTPUT.PUT_LINE(VN_NUM +  VN_NUM2); 
+END;
