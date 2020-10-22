@@ -1,0 +1,67 @@
+oracle if/case
+
+조건문 IF문
+
+--사용법
+IF 조건 THEN
+처리문
+ELSIF 조건2 THEN
+처리문
+......
+ELSE
+처리문
+END IF;
+
+IF문은 조건값이 참이면 해당 조건의 처리문장이 실행됩니다. 
+사용법은 위와같으며 다른 언어와 비교하여 전체적인 구조는 다르지 않으나 3가지가 다릅니다. 
+조건 다음에 THEN을 붙인다는것이 다르고, 
+여러개의 조건을 붙일 경우 다른 언어에서는 ELSE IF라고 많이 하지만 PL/SQL에서는 ELSIF 라는 명령어를 사용합니다. 
+그리고 마지막에는 IF를 끝낸다는 END IF를 붙인다는 점이 다릅니다.
+
+DECLARE
+SCORE NUMBER :=80;
+
+BEGIN
+
+IF SCORE >= 90 THEN
+    DBMS_OUTPUT.PUT_LINE('A등급');
+ELSIF SCORE >-80 THEN
+    DBMS_OUTPUT.PUT_LINE('B등급');
+ELSE
+     DBMS_OUTPUT.PUT_LINE('C등급');
+END IF;
+
+END;
+
+
+조건문 CASE문
+
+--사용법
+CASE WHEN 조건 THEN
+처리문
+WHEN 조건2 THEN
+처리문
+ELSE
+처리문
+END CASE;
+
+PL/.SQL에서의 CASE문은 오라클 CASE문과 거의 비슷합니다. 
+PL/SQL에서의 CASE문은 대부분은 위와 같은 방식으로 사용합니다. 
+또 일반적인 프로그래밍 언어의 SWITCH문 처럼 CASE문에 먼저 표현식을 두고 그 결과를 비교하며 연산할 수 있습니다.
+
+DECLARE
+SCORE NUMBER :=80;
+
+BEGIN
+
+CASE SCORE
+WHEN >= 90 THEN
+    DBMS_OUTPUT.PUT_LINE('A등급');
+WHEN SCORE >= 80 THEN
+    DBMS_OUTPUT.PUT_LINE('B등급');
+ELSE
+     DBMS_OUTPUT.PUT_LINE('C등급');
+END CASE;
+
+END;
+
