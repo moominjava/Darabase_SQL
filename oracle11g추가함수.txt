@@ -1,0 +1,26 @@
+oracle11g추가된함수
+
+새롭게 추가된 함수로 쿼리문 만들고 결과 보기
+오라클 11g에서 새롭게 추가된 함수
+
+*LISTAGG
+
+정규화된 테이블을 비정규화해서 출력하는 함수이다.
+세로로 출력되는 행을 가로로 보기를 원하는 경우가 많은데 이를 위해서 11g에서 제공하는 함수이다.
+SQL> SELECT DEPTNO, LISTAGG(ENAME, '**') WITHIN GROUP (ORDER BY HIREDATE) "LISTAGG" FROM EMP GROUP BY DEPTNO;
+
+
+*PIVOT
+
+ROW 단위를 COLUMN 단위로 변경해 주어, 사용자가 한 눈에 보기 편한 레포트를 만들어 주는 함수이다.
+예) EMP 테이블에서 부서별로 각 담당업무별 인원이 몇 명인지 계산하는 쿼리문
+
+SQL> SELECT DEPTNO, COUNT(DECODE(JOB, 'CLERK', 0)) "CLERK", COUNT(DECODE(JOB, 'MANAGER', 0)) "MANAGER", COUNT(DECODE(JOB, 'PRESIDENT', 0)) "PRESIDENT", COUNT(DECODE(JOB, 'ANALYST', 0)) "ANALYST", COUNT(DECODE(JOB, 'SALESMAN', 0)) "SALESMAN" FROM EMP GROUP BY DEPTNO ORDER BY DEPTNO;
+
+*RANK
+주어진 컬럼값의 그룹에서 값의 순위를 계산한 후 순위를 출력해 주는 함수이다.
+이 함수는 집계용 문법으로도 사용할 수 있고 분석용 문법으로도 사용할 수 있다.
+집계용 문법 : RANK(조건값) WITHIN GROUP (ORDER BY 조건컬럼명[ASC||DESC])
+분석용 문법 : RANK() OVER(ORDER BY 조건컬러명[ASC||DESC])
+예) 집계용 문법을 이용해 이름(ENAME)이 "SMITH"인 순위를 조회하는 쿼리문
+SQL> SELECT ENAME FROM EMP ORDER BY 1; SQL> SELECT RANK('SMITH') WITHIN GROUP(ORDER BY ENAME) "RANK" FROM EMP;
